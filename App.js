@@ -148,7 +148,7 @@
 //
 // export default App;
 
-//==========Exercise 4============
+//==========Exercise 3============
 // import { StatusBar } from 'expo-status-bar';
 // import { StyleSheet, Text, View, SectionList, TouchableOpacity, Button, Image, Alert } from 'react-native';
 // import Icon from "react-native-vector-icons/Entypo";
@@ -281,7 +281,7 @@
 //
 // export default App;
 
-//==========Exercise 5============
+//==========Exercise 4============
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, SectionList, TouchableOpacity, Button, Image, Alert } from 'react-native';
 import Icon from "react-native-vector-icons/MaterialIcons";
