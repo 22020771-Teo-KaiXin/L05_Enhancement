@@ -1,7 +1,16 @@
 import React, {useState} from 'react'
 import {datasource} from "./Data.js";
-import { TextInput, View, Text, Button, Alert } from "react-native";
+import { StyleSheet, TextInput, Image, View, Text, Button, Alert } from "react-native";
 import RNPickerSelect from 'react-native-picker-select';
+
+const styles = StyleSheet.create({
+    imagePreview: {
+        width: 210,
+        height: 295,
+        borderRadius: 10,
+        marginTop: 10,
+    },
+});
 
 const Add = ({navigation}) => {
     const [name, setName] = useState('');
@@ -9,7 +18,7 @@ const Add = ({navigation}) => {
     const [imageUrl, setImageUrl] = useState('');
 
     const isValidUrl = (url) => {
-        const regex = /^(ftp|http|https):\/\/[^ "]+$/;
+        const regex = /^https:\/\/dz3we2x72f7ol\.cloudfront\.net\/expansions\/151\/en-us\/[A-Za-z0-9_-]+\.png$/;
         return regex.test(url);
     };
 
@@ -20,7 +29,7 @@ const Add = ({navigation}) => {
         }
 
         if (!isValidUrl(imageUrl)) {
-            Alert.alert('Invalid Image URL', 'Please enter a valid image URL.');
+            Alert.alert('Invalid Image URL', 'Please enter a valid image URL from the official Pokémon website (tcg.pokemon.com).');
             return;
         }
 
@@ -83,7 +92,19 @@ const Add = ({navigation}) => {
                     />
                 </View>
 
-                <Button title="SUBMIT" onPress={handleSubmit} />
+                {imageUrl && isValidUrl(imageUrl) && (
+                    <View style={{ alignItems: 'center', marginTop: 20 }}>
+                        <Text style={{ fontWeight: 'bold' }}>Image Preview:</Text>
+                        <Image
+                            source={{ uri: imageUrl }}
+                            style={styles.imagePreview} // Styling for the image
+                        />
+                    </View>
+                )}
+
+                <View style={{ padding: 20, marginTop: 50 }}>
+                    <Button title="SUBMIT" onPress={handleSubmit} />
+                </View>
             </View>
         );
     };

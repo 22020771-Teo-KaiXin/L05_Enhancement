@@ -150,7 +150,7 @@
 
 //==========Exercise 3============
 import React from 'react';
-import { StatusBar, StyleSheet, Text, View, SectionList, TouchableOpacity, Button, Image, Alert } from 'react-native';
+import { StatusBar, StyleSheet, Text, View, SectionList, TouchableOpacity, Button, Image, Alert, Animated } from 'react-native';
 import Icon from "react-native-vector-icons/Entypo";
 import {datasource} from './Data.js';
 

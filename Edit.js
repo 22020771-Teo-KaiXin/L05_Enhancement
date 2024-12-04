@@ -1,13 +1,22 @@
 import React, {useState} from 'react'
 import {datasource} from "./Data.js";
-import {TextInput, View, Text, Button, Alert} from "react-native";
+import { StyleSheet, Image, TextInput, View, Text, Button, Alert} from "react-native";
+
+const styles = StyleSheet.create({
+    imagePreview: {
+        width: 210,
+        height: 295,
+        borderRadius: 10,
+        marginTop: 10,
+    },
+});
 
 const Edit = ({navigation, route}) => {
     const [name, setName] = useState(route.params.key);
     const [imageUrl, setImageUrl] = useState(route.params.imageUrl);
 
     const isValidUrl = (url) => {
-        const regex = /^(ftp|http|https):\/\/[^ "]+$/;
+        const regex = /^https:\/\/dz3we2x72f7ol\.cloudfront\.net\/expansions\/151\/en-us\/[A-Za-z0-9_-]+\.png$/;
         return regex.test(url);
     };
 
@@ -18,7 +27,11 @@ const Edit = ({navigation, route}) => {
         }
 
         if (!isValidUrl(imageUrl)) {
-            Alert.alert("Invalid Image URL", "Please enter a valid image URL.");
+            Alert.alert(
+                "Invalid Image URL",
+                "Please enter a valid Pokémon image URL from the official Pokémon website (tcg.pokemon.com).",
+                [{ text: "OK" }]
+            );
             return;
         }
 
@@ -79,6 +92,16 @@ const Edit = ({navigation, route}) => {
                            numberOfLines={2}
                 />
             </View>
+
+            {imageUrl && isValidUrl(imageUrl) && (
+                <View style={{ alignItems: 'center', marginTop: 20 }}>
+                    <Text style={{ fontWeight: 'bold' }}>Image Preview:</Text>
+                    <Image
+                        source={{ uri: imageUrl }}
+                        style={styles.imagePreview}
+                    />
+                </View>
+            )}
 
             <View style={{ padding: 10, flexDirection: 'row', justifyContent: 'space-between' }}>
                 <View style={{ flex: 1, margin: 10 }}>
